@@ -19,16 +19,16 @@ class App extends React.Component {
         };
     }
 
-    componentWillUpdate() {
+    componentWillReceiveProps() {
         if (this.state.totalSeconds === 0 && this.state.working) {
-            this.prepareHandler({
+            this.setState({
                 working: !this.state.working,
                 totalSeconds: this.state.breakDuration * 60,
                 clockMinutes: this.state.breakDuration,
                 clockSeconds: 0,
             });
         } else if (this.state.totalSeconds === 0 && !this.state.working) {
-            this.prepareHandler({
+            this.setState({
                 working: !this.state.working,
                 totalSeconds: this.state.workDuration * 60,
                 clockMinutes: this.state.workDuration,
@@ -42,24 +42,24 @@ class App extends React.Component {
         if (this.state.pause) {
             // null
         } else {
-            this.prepareHandler({pause: false});
+            this.setState({pause: false});
         }
         if (this.state.running) {
             // null
         } else {
-            this.prepareHandler({
+            this.setState({
                 clock: setInterval(() => {
-                    this.prepareHandler(
+                    this.setState(
                         {totalSeconds: this.state.totalSeconds - 1},
                         () => {
-                            this.prepareHandler(
+                            this.setState(
                                 {
                                     clockMinutes: Math.floor(
                                         this.state.totalSeconds / 60,
                                     ),
                                 },
                                 () => {
-                                    this.prepareHandler({
+                                    this.setState({
                                         clockSeconds:
                                             this.state.totalSeconds -
                                             this.state.clockMinutes * 60,
@@ -77,7 +77,7 @@ class App extends React.Component {
     clickPause() {
         console.log("pause");
         clearInterval(this.state.clock);
-        this.prepareHandler({
+        this.setState({
             pause: true,
             running: false,
         });
@@ -87,14 +87,14 @@ class App extends React.Component {
         console.log("stop");
         clearInterval(this.state.clock);
         if (this.state.working) {
-            this.prepareHandler({
+            this.setState({
                 running: false,
                 totalSeconds: this.state.workDuration * 60,
                 clockMinutes: this.state.workDuration,
                 clockSeconds: 0,
             });
         } else {
-            this.prepareHandler({
+            this.setState({
                 running: false,
                 totalSeconds: this.state.breakDuration * 60,
                 clockMinutes: this.state.breakDuration,
@@ -106,7 +106,7 @@ class App extends React.Component {
     setWorkTime(e) {
         switch (e) {
             case "+":
-                this.prepareHandler(
+                this.setState(
                     {
                         workDuration: this.state.workDuration + 1,
                     },
@@ -116,7 +116,7 @@ class App extends React.Component {
                             this.state.working &&
                             !this.state.pause
                         ) {
-                            this.prepareHandler({
+                            this.setState({
                                 clockMinutes: this.state.clockMinutes + 1,
                                 totalSeconds: this.state.workDuration * 60,
                             });
@@ -129,7 +129,7 @@ class App extends React.Component {
                 if (this.state.workDuration < 2) {
                     //null
                 } else {
-                    this.prepareHandler(
+                    this.setState(
                         {
                             workDuration: this.state.workDuration - 1,
                         },
@@ -139,7 +139,7 @@ class App extends React.Component {
                                 this.state.working &&
                                 !this.state.pause
                             ) {
-                                this.prepareHandler({
+                                this.setState({
                                     clockMinutes: this.state.clockMinutes - 1,
                                     totalSeconds: this.state.workDuration * 60,
                                 });
@@ -156,7 +156,7 @@ class App extends React.Component {
     setBreakTime(e) {
         switch (e) {
             case "+":
-                this.prepareHandler(
+                this.setState(
                     {
                         breakDuration: this.state.breakDuration + 1,
                     },
@@ -166,7 +166,7 @@ class App extends React.Component {
                             !this.state.working &&
                             !this.state.pause
                         ) {
-                            this.prepareHandler({
+                            this.setState({
                                 clockMinutes: this.state.clockMinutes + 1,
                                 totalSeconds:
                                     (this.state.breakDuration + 1) * 60,
@@ -180,7 +180,7 @@ class App extends React.Component {
                 if (this.state.breakDuration < 2) {
                     // null
                 } else {
-                    this.prepareHandler(
+                    this.setState(
                         {
                             breakDuration: this.state.breakDuration - 1,
                         },
@@ -190,7 +190,7 @@ class App extends React.Component {
                                 !this.state.working &&
                                 !this.state.pause
                             ) {
-                                this.prepareHandler({
+                                this.setState({
                                     clockMinutes: this.state.clockMinutes - 1,
                                     totalSeconds: this.state.breakDuration * 60,
                                 });
