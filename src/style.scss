@@ -7,10 +7,10 @@
 
 *{
     margin: 0;
-    padding: 0;
+    padding: 0; 
 }
 body{
-    background-color: #f5d1d4;
+    background-color: #ffaab6;
     height: 100vh;
     width:100vw;
     color: white;
@@ -38,11 +38,10 @@ padding-left:10px;}
 
  /* Pomodoro */
 
-.pomodoroTime {  font-size:70px;
+.pomodoroTime {  
+  font-size:80px;
+  span {font-size:50px;}
   
-    span {
-      font-size:44px;
-    }
     div {
       display:inline;    
     }}
