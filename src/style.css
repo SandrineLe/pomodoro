@@ -1,0 +1,211 @@
+/* Fonts */
+@import url("https://use.typekit.net/ioz7fsi.css");
+/* Globals */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f5d1d4;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  font-family: novel-sans-hair, sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: bilo, sans-serif;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 60px;
+}
+
+h3 {
+  font-size: 24px;
+  font-family: bilo, sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-size: 24px;
+  margin: -10px 10px 10px 10px;
+  padding-left: 10px;
+}
+
+/* Pomodoro */
+.pomodoroTime {
+  font-size: 70px;
+}
+.pomodoroTime span {
+  font-size: 44px;
+}
+.pomodoroTime div {
+  display: inline;
+}
+
+#timer .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.startPauseReset button {
+  background-image: linear-gradient(to left, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+  color: #fff;
+  width: 135px;
+  height: 40px;
+  border-radius: 18px;
+  border: none;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+}
+.startPauseReset button:hover {
+  transform: translateY(-3px);
+  background-image: linear-gradient(to left, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+}
+.startPauseReset button:active {
+  color: white;
+}
+
+#timer .clockSetter_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Plus and minus */
+.plusandminus {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.plusandminus button {
+  /*background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);*/
+  color: #f9748f;
+  background-color: white;
+  width: 55px;
+  height: 40px;
+  border-radius: 18px;
+  border: none;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+}
+.plusandminus button:hover {
+  transform: translateY(-3px);
+}
+.plusandminus button:active {
+  background-color: #f9748f;
+  color: white;
+}
+
+/* Spins */
+.spinner {
+  position: absolute;
+  z-index: -3333;
+  width: 490px;
+  height: 490px;
+}
+.spinner:before, .spinner:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+}
+
+@keyframes rotate-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes anti-rotate-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.spinner.spinner-1:before {
+  width: 488px;
+  height: 488px;
+  border-bottom-color: white;
+  border-right-color: white;
+  border-top-color: rgba(255, 255, 255, 0);
+  border-left-color: rgba(255, 255, 255, 0);
+  top: 0px;
+  left: 0px;
+  animation: rotate-animation 1s linear 0s infinite;
+}
+.spinner.spinner-1:after {
+  width: 341.6px;
+  height: 341.6px;
+  border-bottom-color: white;
+  border-right-color: white;
+  border-top-color: rgba(255, 255, 255, 0);
+  border-left-color: rgba(255, 255, 255, 0);
+  top: 73.2px;
+  left: 73.2px;
+  animation: anti-rotate-animation 0.85s linear 0s infinite;
+}
+
+/* spinner-2 styles */
+@keyframes scale {
+  0% {
+    transform: scale(1);
+    border-style: solid;
+  }
+  100% {
+    transform: scale(0);
+    border-style: dashed;
+  }
+}
+.spinner.spinner-2:before {
+  width: 488px;
+  height: 488px;
+  border-color: white;
+  top: 0px;
+  left: 0px;
+  animation: scale 1s linear 0s infinite alternate;
+}
+.spinner.spinner-2:after {
+  width: 488px;
+  height: 488px;
+  border-color: white;
+  top: 0;
+  left: 0;
+  animation: scale 1s linear 0s infinite alternate-reverse;
+}
+
+/*# sourceMappingURL=style.css.map */
