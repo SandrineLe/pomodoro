@@ -21,14 +21,14 @@ class App extends React.Component {
 
     componentWillUpdate() {
         if (this.state.totalSeconds === 0 && this.state.working) {
-            this.props.prepareHandler({
+            this.prepareHandler({
                 working: !this.state.working,
                 totalSeconds: this.state.breakDuration * 60,
                 clockMinutes: this.state.breakDuration,
                 clockSeconds: 0,
             });
         } else if (this.state.totalSeconds === 0 && !this.state.working) {
-            this.props.prepareHandler({
+            this.prepareHandler({
                 working: !this.state.working,
                 totalSeconds: this.state.workDuration * 60,
                 clockMinutes: this.state.workDuration,
@@ -42,24 +42,24 @@ class App extends React.Component {
         if (this.state.pause) {
             // null
         } else {
-            this.props.prepareHandler({pause: false});
+            this.prepareHandler({pause: false});
         }
         if (this.state.running) {
             // null
         } else {
-            this.props.prepareHandler({
+            this.prepareHandler({
                 clock: setInterval(() => {
-                    this.props.prepareHandler(
+                    this.prepareHandler(
                         {totalSeconds: this.state.totalSeconds - 1},
                         () => {
-                            this.props.prepareHandler(
+                            this.prepareHandler(
                                 {
                                     clockMinutes: Math.floor(
                                         this.state.totalSeconds / 60,
                                     ),
                                 },
                                 () => {
-                                    this.props.prepareHandler({
+                                    this.prepareHandler({
                                         clockSeconds:
                                             this.state.totalSeconds -
                                             this.state.clockMinutes * 60,
@@ -77,7 +77,7 @@ class App extends React.Component {
     clickPause() {
         console.log("pause");
         clearInterval(this.state.clock);
-        this.props.prepareHandler({
+        this.prepareHandler({
             pause: true,
             running: false,
         });
@@ -87,14 +87,14 @@ class App extends React.Component {
         console.log("stop");
         clearInterval(this.state.clock);
         if (this.state.working) {
-            this.props.prepareHandler({
+            this.prepareHandler({
                 running: false,
                 totalSeconds: this.state.workDuration * 60,
                 clockMinutes: this.state.workDuration,
                 clockSeconds: 0,
             });
         } else {
-            this.props.prepareHandler({
+            this.prepareHandler({
                 running: false,
                 totalSeconds: this.state.breakDuration * 60,
                 clockMinutes: this.state.breakDuration,
@@ -106,7 +106,7 @@ class App extends React.Component {
     setWorkTime(e) {
         switch (e) {
             case "+":
-                this.props.prepareHandler(
+                this.prepareHandler(
                     {
                         workDuration: this.state.workDuration + 1,
                     },
@@ -116,7 +116,7 @@ class App extends React.Component {
                             this.state.working &&
                             !this.state.pause
                         ) {
-                            this.props.prepareHandler({
+                            this.prepareHandler({
                                 clockMinutes: this.state.clockMinutes + 1,
                                 totalSeconds: this.state.workDuration * 60,
                             });
@@ -129,7 +129,7 @@ class App extends React.Component {
                 if (this.state.workDuration < 2) {
                     //null
                 } else {
-                    this.props.prepareHandler(
+                    this.prepareHandler(
                         {
                             workDuration: this.state.workDuration - 1,
                         },
@@ -139,7 +139,7 @@ class App extends React.Component {
                                 this.state.working &&
                                 !this.state.pause
                             ) {
-                                this.props.prepareHandler({
+                                this.prepareHandler({
                                     clockMinutes: this.state.clockMinutes - 1,
                                     totalSeconds: this.state.workDuration * 60,
                                 });
@@ -156,7 +156,7 @@ class App extends React.Component {
     setBreakTime(e) {
         switch (e) {
             case "+":
-                this.props.prepareHandler(
+                this.prepareHandler(
                     {
                         breakDuration: this.state.breakDuration + 1,
                     },
@@ -166,7 +166,7 @@ class App extends React.Component {
                             !this.state.working &&
                             !this.state.pause
                         ) {
-                            this.props.prepareHandler({
+                            this.prepareHandler({
                                 clockMinutes: this.state.clockMinutes + 1,
                                 totalSeconds:
                                     (this.state.breakDuration + 1) * 60,
@@ -180,7 +180,7 @@ class App extends React.Component {
                 if (this.state.breakDuration < 2) {
                     // null
                 } else {
-                    this.props.prepareHandler(
+                    this.prepareHandler(
                         {
                             breakDuration: this.state.breakDuration - 1,
                         },
@@ -190,7 +190,7 @@ class App extends React.Component {
                                 !this.state.working &&
                                 !this.state.pause
                             ) {
-                                this.props.prepareHandler({
+                                this.prepareHandler({
                                     clockMinutes: this.state.clockMinutes - 1,
                                     totalSeconds: this.state.breakDuration * 60,
                                 });
